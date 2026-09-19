@@ -24,8 +24,43 @@ public class LearnerProfileController {
         this.userService = userService;
     }
 
-    @PostMapping("/user/{userId}")
+    @PostMapping
     public ResponseEntity<?> createProfile(
+            @RequestBody LearnerProfile profile) {
+
+        if (profile == null
+                || profile.getUser() == null
+                || profile.getUser().getId() == null) {
+
+            return ResponseEntity.badRequest()
+                    .body("User is required to create profile.");
+        }
+
+        UUID userId = profile.getUser().getId();
+
+        var userOptional = userService.getUserById(userId);
+
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User user = userOptional.get();
+
+        if (learnerProfileService.profileExistsForUser(userId)) {
+            return ResponseEntity.badRequest()
+                    .body("Profile already exists for this user.");
+        }
+
+        profile.setUser(user);
+
+        LearnerProfile savedProfile =
+                learnerProfileService.createProfile(profile);
+
+        return ResponseEntity.ok(savedProfile);
+    }
+
+    @PostMapping("/user/{userId}")
+    public ResponseEntity<?> createProfileForUser(
             @PathVariable UUID userId,
             @RequestBody LearnerProfile profile) {
 
