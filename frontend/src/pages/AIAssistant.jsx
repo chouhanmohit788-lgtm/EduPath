@@ -18,7 +18,7 @@ import {
 
 import { chatApi } from "../services/api";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "https://edupath-lkv7.onrender.com/api";
 
 function AIAssistant() {
   const [messages, setMessages] = useState([]);
@@ -289,8 +289,6 @@ function AIAssistant() {
   return (
     <div className="min-h-screen bg-[#050811] text-white overflow-hidden">
 
-      {/* ================= SIDEBAR ================= */}
-
       <aside
         className={`
           fixed z-50 top-0 left-0 h-screen
@@ -310,8 +308,6 @@ function AIAssistant() {
         `}
       >
 
-        {/* Logo */}
-
         <div className="h-[76px] flex items-center px-5 border-b border-white/[0.06]">
 
           <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-[0_0_25px_rgba(249,115,22,0.3)]">
@@ -330,8 +326,6 @@ function AIAssistant() {
             </div>
           )}
 
-          {/* Mobile Close */}
-
           <button
             onClick={() =>
               setSidebarOpen(false)
@@ -341,8 +335,6 @@ function AIAssistant() {
             <FiX size={20} />
           </button>
         </div>
-
-        {/* Navigation */}
 
         <nav className="p-4 space-y-2">
 
@@ -391,8 +383,6 @@ function AIAssistant() {
 
         </nav>
 
-        {/* Collapse button */}
-
         <button
           onClick={() =>
             setSidebarCollapsed(
@@ -406,8 +396,6 @@ function AIAssistant() {
 
       </aside>
 
-      {/* Mobile overlay */}
-
       {sidebarOpen && (
         <div
           onClick={() =>
@@ -416,8 +404,6 @@ function AIAssistant() {
           className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
         />
       )}
-
-      {/* ================= MAIN ================= */}
 
       <div
         className={`
@@ -429,8 +415,6 @@ function AIAssistant() {
           }
         `}
       >
-
-        {/* ================= TOP BAR ================= */}
 
         <header className="h-[76px] px-4 sm:px-6 flex items-center justify-between border-b border-white/[0.06] bg-[#050811]/90 backdrop-blur-xl sticky top-0 z-30">
 
@@ -445,8 +429,6 @@ function AIAssistant() {
               <FiMenu size={20} />
             </button>
 
-            {/* Search */}
-
             <div className="hidden sm:flex items-center gap-2 w-56 lg:w-72 h-10 px-3 rounded-xl bg-white/[0.035] border border-white/[0.07] text-slate-500">
               <FiSearch size={16} />
 
@@ -459,8 +441,6 @@ function AIAssistant() {
 
           <div className="flex items-center gap-3">
 
-            {/* Streak */}
-
             <div className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-500/10 border border-orange-500/20">
               <FiZap
                 size={15}
@@ -471,8 +451,6 @@ function AIAssistant() {
                 7 Day Streak
               </span>
             </div>
-
-            {/* XP */}
 
             <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-purple-500/10 border border-purple-500/20">
               <FiStar
@@ -485,8 +463,6 @@ function AIAssistant() {
               </span>
             </div>
 
-            {/* Profile */}
-
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-400 to-purple-500 flex items-center justify-center font-bold text-sm shadow-[0_0_18px_rgba(249,115,22,0.2)]">
               M
             </div>
@@ -495,11 +471,7 @@ function AIAssistant() {
 
         </header>
 
-        {/* ================= CONTENT ================= */}
-
         <main className="max-w-[1250px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
-
-          {/* Header */}
 
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-6">
 
@@ -530,8 +502,6 @@ function AIAssistant() {
 
             </div>
 
-            {/* AI Status */}
-
             <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/[0.035] border border-white/[0.07]">
 
               <div className="relative">
@@ -556,11 +526,7 @@ function AIAssistant() {
 
           </div>
 
-          {/* ================= CHAT ================= */}
-
           <div className="rounded-3xl overflow-hidden border border-white/[0.08] bg-[#080D18] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
-
-            {/* Chat header */}
 
             <div className="px-5 sm:px-6 py-4 border-b border-white/[0.07] bg-gradient-to-r from-purple-500/[0.06] via-transparent to-orange-500/[0.04] flex items-center justify-between">
 
@@ -603,8 +569,6 @@ function AIAssistant() {
               </div>
 
             </div>
-
-            {/* ================= MESSAGES ================= */}
 
             <div className="h-[500px] sm:h-[540px] overflow-y-auto p-4 sm:p-6 space-y-5 scrollbar-thin">
 
@@ -681,8 +645,6 @@ function AIAssistant() {
                       }`}
                     >
 
-                      {/* AI */}
-
                       {!isUser && (
                         <div className="w-9 h-9 shrink-0 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(139,92,246,0.2)]">
 
@@ -690,8 +652,6 @@ function AIAssistant() {
 
                         </div>
                       )}
-
-                      {/* Message */}
 
                       <div
                         className={`max-w-[82%] sm:max-w-[72%] rounded-2xl px-4 py-3 border ${
@@ -721,8 +681,6 @@ function AIAssistant() {
 
                       </div>
 
-                      {/* User */}
-
                       {isUser && (
                         <div className="w-9 h-9 shrink-0 rounded-xl bg-white/[0.07] border border-white/[0.08] flex items-center justify-center">
 
@@ -742,8 +700,6 @@ function AIAssistant() {
               <div ref={messagesEndRef} />
 
             </div>
-
-            {/* ================= SUGGESTIONS ================= */}
 
             <div className="px-4 sm:px-6 pb-3">
 
@@ -769,8 +725,6 @@ function AIAssistant() {
               </div>
 
             </div>
-
-            {/* ================= INPUT ================= */}
 
             <div className="p-4 sm:p-5 border-t border-white/[0.07] bg-black/10">
 
@@ -832,8 +786,6 @@ function AIAssistant() {
         </main>
 
       </div>
-
-      {/* ================= MOBILE BOTTOM NAV ================= */}
 
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 px-3 pb-3">
 
