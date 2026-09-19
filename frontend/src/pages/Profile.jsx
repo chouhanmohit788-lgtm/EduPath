@@ -154,36 +154,19 @@ function Profile() {
           response?.id || profileId
         );
       } else {
-        const response = await fetch(
-          `http://localhost:8080/api/profile/user/${savedUser.id}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
+        const response =
+          await profileApi.create({
+            user: {
+              id: savedUser.id,
             },
-            body: JSON.stringify(
-              profileData
-            ),
-          }
-        );
+            ...profileData,
+          });
 
-        const data =
-          await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            typeof data === "string"
-              ? data
-              : "Failed to create profile."
-          );
-        }
-
-        setProfileId(data.id);
+        setProfileId(response.id);
 
         localStorage.setItem(
           "profileId",
-          data.id
+          response.id
         );
       }
 
